@@ -9,6 +9,7 @@ Puppet 3.x
 
 Sample hiera declaration
 ========================
+~~~
 backupninja::entries :
   database :
     type    : mysql
@@ -34,6 +35,7 @@ backupninja::entries :
         'echo a'
       , 'echo b'
       ]
+~~~
 
 TO-DOs
 ======
