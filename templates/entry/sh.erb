@@ -1,0 +1,7 @@
+# MANAGED BY PUPPET!
+
+<% if @when != '' %>when = <%= @when %><% end -%>
+
+<% @commands.each do |command| -%>
+<%= command %>
+<% end -%>

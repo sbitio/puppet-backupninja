@@ -1,0 +1,95 @@
+# MANAGED BY PUPPET!
+
+#
+#                          |\_
+# B A C K U P N I N J A   /()/
+#                         `\|
+# main configuration file
+#
+
+# how verbose to make the logs
+# 5 -- Debugging messages     (and below)
+# 4 -- Informational messages (and below)
+# 3 -- Warnings               (and below)
+# 2 -- Errors                 (and below)
+# 1 -- Fatal errors           (only)
+loglevel = <%= scope.lookupvar('backupninja::params::log_level') %>
+
+# send a summary of the backup status to
+# this email address:
+reportemail = <%= scope.lookupvar('backupninja::params::reportemail') %>
+
+# if set to 'yes', a report email will be generated
+# even if all modules reported success. (default = yes)
+reportsuccess = <% if scope.lookupvar('backupninja::params::reportsuccess') %>yes<% else %>no<% end %>
+
+# if set to 'yes', info messages from handlers will be
+# sent into the email (default = no)
+reportinfo = <% if scope.lookupvar('backupninja::params::reportinfo') %>yes<% else %>no<% end %>
+
+# if set to 'yes', a report email will be generated
+# even if there was no error. (default = yes)
+reportwarning = <% if scope.lookupvar('backupninja::params::reportwarning') %>yes<% else %>no<% end %>
+
+# if set to 'yes', disk space usage will be included in
+# the backup email report
+reportspace = <% if scope.lookupvar('backupninja::params::reportspace') %>yes<% else %>no<% end %>
+
+# where to rsync the backupninja.log to be aggregated in
+# a ninjareport
+reporthost = <%= scope.lookupvar('backupninja::params::reporthost') %>
+
+# what user to connect to reporthost to sync the
+# backupninja.log
+reportuser = <%= scope.lookupvar('backupninja::params::reportuser') %>
+
+# where on the reporthost should the report go
+# NOTE: the name of the log will be used in the report,
+# use a globally unique name, preferably the hostname
+reportdirectory = <%= scope.lookupvar('backupninja::params::reportdirectory') %>
+
+# set to the administration group that is allowed to
+# read/write configuration files in /etc/backup.d
+admingroup = <%= scope.lookupvar('backupninja::params::admingroup') %>
+
+#######################################################
+# for most installations, the defaults below are good #
+#######################################################
+
+# where to log:
+logfile = <%= scope.lookupvar('backupninja::params::logfile') %>
+
+# directory where all the backup configuration files live
+configdirectory = <%= scope.lookupvar('backupninja::params::configdirectory') %>
+
+# where backupninja helper scripts are found
+scriptdirectory = <%= scope.lookupvar('backupninja::params::scriptdirectory') %>
+
+# where backupninja libs are found
+libdirectory = <%= scope.lookupvar('backupninja::params::libdirectory') %>
+
+# whether to use colors in the log file
+usecolors = <% if scope.lookupvar('backupninja::params::usecolors') %>yes<% else %>no<% end %>
+
+# default value for 'when'
+when = <%= scope.lookupvar('backupninja::params::when') %>
+
+# if running vservers, set to yes
+vservers = <% if scope.lookupvar('backupninja::params::vservers') %>yes<% else %>no<% end %>
+
+# programs paths
+# SLAPCAT=/usr/sbin/slapcat
+# LDAPSEARCH=/usr/bin/ldapsearch
+# RDIFFBACKUP=/usr/bin/rdiff-backup
+# CSTREAM=/usr/bin/cstream
+# MYSQL=/usr/bin/mysql
+# MYSQLHOTCOPY=/usr/bin/mysqlhotcopy
+# MYSQLDUMP=/usr/bin/mysqldump
+# PGSQLDUMP=/usr/bin/pg_dump
+# PGSQLDUMPALL=/usr/bin/pg_dumpall
+# GZIP=/bin/gzip
+# GZIP_OPTS='--rsyncable'
+# RSYNC=/usr/bin/rsync
+# VSERVERINFO=/usr/sbin/vserver-info
+# VSERVER=/usr/sbin/vserver
+# VROOTDIR=/var/lib/vservers
