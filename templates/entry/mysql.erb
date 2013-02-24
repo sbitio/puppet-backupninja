@@ -25,7 +25,7 @@ sqldumpoptions = <%= @sqldumpoptions %>
 
 # compress = < yes | no > (default = yes)
 # if yes, compress the sqldump output.
-compress = <% if @sqldump %>yes<% else %>no<% end %>
+compress = <% if @compress %>yes<% else %>no<% end %>
 
 # dbhost      = <host> (default = localhost)
 <% if @dbhost != '' -%>
