@@ -1,7 +1,7 @@
 class backupninja::params (
   $log_level       = 4,
   $reportemail     = 'root',
-  $reportsuccess   = true,
+  $reportsuccess   = false,
   $reportinfo      = false,
   $reportwarning   = true,
   $reportspace     = false,
