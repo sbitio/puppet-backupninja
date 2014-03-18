@@ -70,6 +70,7 @@ define backupninja::entry (
         dbpassword     => $options[dbpassword],
         configfile     => $options[configfile],
         nodata         => $options[nodata],
+        nodata_every   => $options[nodata_every],
         vsname         => $options[vsname],
       }
     }
