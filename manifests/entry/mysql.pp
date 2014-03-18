@@ -14,6 +14,7 @@ define backupninja::entry::mysql (
   $dbpassword     = '',
   $configfile     = $backupninja::params::mysql_configfile,
   $nodata         = '',
+  $nodata_every   = [],
   $vsname         = '',
 ) {
 
@@ -25,6 +26,9 @@ define backupninja::entry::mysql (
       ensure => $backupninja::ensure,
     }
   }
+
+  # TODO: do some validations
+  $db_array = split($databases, ' ')
 
   file { "${backupninja::params::config_dir}/${weight}_${name}.mysql" :
     ensure  => $backupninja::ensure,
