@@ -16,6 +16,7 @@ define backupninja::entry::mysql (
   $nodata         = '',
   $nodata_every   = [],
   $vsname         = '',
+  $handler        = 'mysql',
 ) {
 
   require backupninja::params
@@ -30,7 +31,7 @@ define backupninja::entry::mysql (
   # TODO: do some validations
   $db_array = split($databases, ' ')
 
-  file { "${backupninja::params::config_dir}/${weight}_${name}.mysql" :
+  file { "${backupninja::params::config_dir}/${weight}_${name}.${handler}" :
     ensure  => $backupninja::ensure,
     owner   => 'root',
     group   => 'root',
