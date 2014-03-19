@@ -72,6 +72,7 @@ define backupninja::entry (
         nodata         => $options[nodata],
         nodata_every   => $options[nodata_every],
         vsname         => $options[vsname],
+        handler        => $options[handler],
       }
     }
     'sh': {
