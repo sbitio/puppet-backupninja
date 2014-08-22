@@ -60,7 +60,7 @@ admingroup = <%= scope.lookupvar('backupninja::params::admingroup') %>
 logfile = <%= scope.lookupvar('backupninja::params::logfile') %>
 
 # directory where all the backup configuration files live
-configdirectory = <%= scope.lookupvar('backupninja::params::configdirectory') %>
+configdirectory = <%= scope.lookupvar('backupninja::params::config_dir') %>
 
 # where backupninja helper scripts are found
 scriptdirectory = <%= scope.lookupvar('backupninja::params::scriptdirectory') %>
