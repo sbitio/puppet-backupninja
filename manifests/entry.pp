@@ -1,5 +1,3 @@
-import "entry/*.pp"
-
 define backupninja::entry (
   $type,
   $options,
