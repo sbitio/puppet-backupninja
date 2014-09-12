@@ -11,10 +11,6 @@ define backupninja::handler (
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    #content => $varnish::params::vcl_source ? {
-    #  undef   => template('varnish/empty.vcl.erb'),
-    #  default => undef,
-    #},
     source  => $handler_source,
   }
   file { "${backupninja::params::scriptdirectory}/${name}.helper" :
@@ -22,12 +18,7 @@ define backupninja::handler (
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    #content => $varnish::params::vcl_source ? {
-    #  undef   => template('varnish/empty.vcl.erb'),
-    #  default => undef,
-    #},
     source  => $helper_source,
   }
-
 
 }
