@@ -37,5 +37,10 @@ backupninja::entries :
       ]
 ~~~
 
+NOTES :
+=======
+
+* mysql_updated is upstream backupninja mysql handler (commit "8b6b607") since table ignore support is broken on some system packages (namely wheezy).
+
 TO-DOs
 ======
