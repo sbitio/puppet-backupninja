@@ -8,6 +8,7 @@ getconf backupdir /var/backups/mysql
 getconf databases all
 getconf ignores
 getconf nodata
+getconf nodata_any
 getconf dbhost localhost
 getconf hotcopy no
 getconf sqldump no
@@ -266,21 +267,42 @@ then
             ;;
       esac
 
-      # Dumping structure and data
-      DUMP="$DUMP_BASE $ignore $db"
+      # Dump only structure for tables in nodata and/or nodata_any.
+      STRUCT_TABLES=''
 
-      # If requested, dump only the table structure for this database
+      # Get tables in this database, with ',' as delimiter.
+      TABLES=,`echo 'show tables' | mysql $defaultsfile -BN $db | tr "\n" ","`
+
+      # Add tables in nodata_any.
+      ignore_any=''
+      for table in $nodata_any; do
+        if [[ $TABLES == *",$table,"* ]]; then
+          ignore_any="$ignore_any --ignore-table=$db.$table"
+          STRUCT_TABLES="$STRUCT_TABLES $table"
+        fi
+      done
+
+      # Add tables in nodata.
       if echo "$nodata" | grep -E '(^|[[:space:]])'"$db\." >/dev/null
       then
          # Get the structure of the tables, without data
-         DUMP_STRUCT="$DUMP_BASE --no-data $db"
          for qualified_table in $nodata
          do
             table=$( expr match "$qualified_table" "$db\.\(.\+\)" )
-            DUMP_STRUCT="$DUMP_STRUCT $table"
+            STRUCT_TABLES="$STRUCT_TABLES $table"
          done
-         DUMP="( $DUMP; $DUMP_STRUCT )"
       fi
+
+      # Dumping structure and data.
+      DUMP="$DUMP_BASE $ignore $ignore_any $db"
+
+      # Dumping only structure for nodata/nodata_any tables.
+      if [ -n "$STRUCT_TABLES" ]
+      then
+        DUMP_STRUCT="$DUMP_BASE --no-data $db $STRUCT_TABLES"
+        DUMP="( $DUMP; $DUMP_STRUCT )"
+      fi
+
       if [ $usevserver = yes ]
       then
          # Test to make sure mysqld is running, if it is not sqldump will not work

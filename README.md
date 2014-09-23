@@ -15,7 +15,8 @@ backupninja::entries :
     type    : mysql
     when    : 'everyday at 18'
     options :
-      hotcopy : false
+      hotcopy    : false
+      nodata_any : [cache, sessions, watchdog]
   files :
     type    : duplicity
     when    : 'everyday at 18'
@@ -37,10 +38,10 @@ backupninja::entries :
       ]
 ~~~
 
-NOTES :
-=======
+NOTES
+=====
 
-* mysql_updated is upstream backupninja mysql handler (commit "8b6b607") since table ignore support is broken on some system packages (namely wheezy).
+* `mysql_updated` is a patched version of mysql handler to allow `nodata_any`.
 
 TO-DOs
 ======

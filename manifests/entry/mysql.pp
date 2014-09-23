@@ -14,13 +14,15 @@ define backupninja::entry::mysql (
   $dbpassword     = '',
   $configfile     = $backupninja::params::mysql_configfile,
   $nodata         = '',
-  $nodata_every   = [],
+  $nodata_any     = [],
   $vsname         = '',
   $handler        = 'mysql',
 ) {
 
   require backupninja::params
   require backupninja::entry::params
+
+  validate_array($nodata_any)
 
   if ! defined(Package[$backupninja::entry::params::mysql_package_name]) {
     package { $backupninja::entry::params::mysql_package_name:

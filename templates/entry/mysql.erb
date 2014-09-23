@@ -51,8 +51,11 @@ dbpassword = <%= @dbpassword %>
 configfile = <%= @configfile %>
 <% end -%>
 
-<% if @nodata != '' or @nodata_every != [] -%>
-nodata = <%= @nodata %><% @db_array.each do |db| %><% @nodata_every.each do |table| %> <%= db %>.<%= table %><% end %><% end %>
+<% if @nodata != '' -%>
+nodata = <%= @nodata %>
+<% end -%>
+<% if @nodata_any -%>
+nodata_any = <% @nodata_any.join(' ') %>
 <% end -%>
 <% if @vsname != '' -%>
 vsname = <%= @vsname %>
