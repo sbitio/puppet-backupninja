@@ -22,7 +22,16 @@ define backupninja::entry::mysql (
   require backupninja::params
   require backupninja::entry::params
 
-  validate_array($nodata_any)
+  # Allow for stringified arrays.
+  # Arrays may come stringified from hiera, if using lookup functions.
+  # See https://docs.puppetlabs.com/hiera/1/variables.html#using-lookup-functions
+  if is_string($nodata_any) {
+    $nodata_any_real = parseyaml($nodata_any)
+  }
+  else {
+    $nodata_any_real = $nodata_any
+  }
+  validate_array($nodata_any_real)
 
   if ! defined(Package[$backupninja::entry::params::mysql_package_name]) {
     package { $backupninja::entry::params::mysql_package_name:
