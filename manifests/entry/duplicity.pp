@@ -17,6 +17,7 @@ define backupninja::entry::duplicity (
     '/home',
     '/usr/local/*bin',
     '/var/lib/dpkg/status*',
+    '/var/www',
   ],
   $exclude            = [
     '/home/*/.gnupg',
