@@ -7,9 +7,10 @@ class backupninja::entry::params () {
       $duplicity_package_name = 'duplicity'
       $mysql_package_name     = 'mysql-client'
     }
-#    redhat, centos: {
-#      $package_name    = 'backupninja'
-#    }
+    redhat, centos: {
+      $duplicity_package_name = 'duplicity'
+      $mysql_package_name     = 'mysql'
+    }
     default: {
       fail("Unsupported platform: ${::operatingsystem}")
     }
