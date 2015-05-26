@@ -1,0 +1,16 @@
+# MANAGED BY PUPPET!
+
+<% if @when != '' %>when = <%= @when %><% end -%>
+
+### backupninja Ldap config file ###
+
+compress = <% if @compress %>yes<% else %>no<% end %>
+
+backupdir = <%= @backupdir %>
+
+suffixes = <%= @suffixes %>
+
+ldif = <%= @ldif %>
+
+restart = <%= @restart %>
+

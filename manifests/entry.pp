@@ -44,6 +44,25 @@ define backupninja::entry (
         destuser           => $options[destuser],
       }
     }
+    'ldap': {
+      backupninja::entry::ldap { $name:
+        ensure         => $ensure,
+        weight         => $weight ? {
+          ''      => undef,
+          default => $weight,
+        },
+        when           => $when ? {
+          ''      => undef,
+          default => $when,
+        },
+        # Ldap
+        backupdir => $options[backupdir],
+        suffixes  => $options[suffixes],
+        compress  => $options[compress],
+        ldif      => $options[ldif],
+        restart   => $options[restart],
+      }
+    }
     'mysql': {
       backupninja::entry::mysql { $name:
         ensure         => $ensure,
