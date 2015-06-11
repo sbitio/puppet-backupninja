@@ -21,18 +21,18 @@ class backupninja::params (
   $admingroup       = 'root'
   $scriptdirectory  = '/usr/share/backupninja'
 
-  case $::operatingsystem {
-    ubuntu, debian: {
+  case $::osfamily {
+    'Debian': {
       $libdirectory     = '/usr/lib/backupninja'
       $mysql_configfile = '/etc/mysql/debian.cnf'
     }
-    redhat, centos: {
+    'RedHat': {
       $libdirectory     = '/usr/libexec/backupninja'
       $mysql_configfile = undef
     }
     default: {
-      fail("Unsupported platform: ${::operatingsystem}")
+      fail("Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, module ${module_name} only support osfamily Debian and RedHat")
     }
   }
-
 }
+
