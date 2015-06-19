@@ -28,7 +28,7 @@ class backupninja::params (
     }
     'RedHat': {
       $libdirectory     = '/usr/libexec/backupninja'
-      $mysql_configfile = undef
+      $mysql_configfile = '/root/.my.cnf'
     }
     default: {
       fail("Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, module ${module_name} only support osfamily Debian and RedHat")
