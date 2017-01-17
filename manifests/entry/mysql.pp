@@ -33,12 +33,6 @@ define backupninja::entry::mysql (
   }
   validate_array($nodata_any_real)
 
-  if ! defined(Package[$backupninja::entry::params::mysql_package_name]) {
-    package { $backupninja::entry::params::mysql_package_name:
-      ensure => $backupninja::ensure,
-    }
-  }
-
   # TODO: do some validations
   $db_array = split($databases, ' ')
 
