@@ -300,7 +300,7 @@ then
       if [ -n "$STRUCT_TABLES" ]
       then
         DUMP_STRUCT="$DUMP_BASE --no-data $db $STRUCT_TABLES"
-        DUMP="( $DUMP; $DUMP_STRUCT )"
+        DUMP="( $DUMP && $DUMP_STRUCT )"
       fi
 
       if [ $usevserver = yes ]
