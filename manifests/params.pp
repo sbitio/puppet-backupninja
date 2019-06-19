@@ -12,6 +12,7 @@ class backupninja::params (
   $when            = 'everyday at 01:00',
   $vservers        = false,
   $backupdir       = '/var/backups',
+  $package_install_options = undef,
 ) {
 
   $package_name     = 'backupninja'
