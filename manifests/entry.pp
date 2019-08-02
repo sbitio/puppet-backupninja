@@ -92,6 +92,25 @@ define backupninja::entry (
         handler        => $options[handler],
       }
     }
+    'pgsql': {
+      backupninja::entry::pgsql { $name:
+        ensure         => $ensure,
+        weight         => $weight ? {
+          ''      => undef,
+          default => $weight,
+        },
+        when           => $when ? {
+          ''      => undef,
+          default => $when,
+        },
+        # pgsql
+        compress  => $options[compress],
+        backupdir => $options[backupdir],
+        databases => $options[databases],
+        format    => $options[format],
+        handler   => $options[handler],
+      }
+    }
     'sh': {
       backupninja::entry::sh { $name:
         ensure   => $ensure,
