@@ -16,6 +16,7 @@ class backupninja::params (
 ) {
 
   $package_name     = 'backupninja'
+  $cache_dir        = '/var/cache/backupninja'
   $config_file      = '/etc/backupninja.conf'
   $config_dir       = '/etc/backup.d'
   $logfile          = '/var/log/backupninja.log'

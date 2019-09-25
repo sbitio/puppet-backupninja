@@ -2,6 +2,13 @@ class backupninja::config () {
   require backupninja::params
   require backupninja::install
 
+  file { $backupninja::params::cache_dir :
+    ensure  => $backupninja::dir_ensure,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0755',
+  }
+
   file { $backupninja::params::config_file :
     ensure  => $backupninja::ensure,
     owner   => 'root',
