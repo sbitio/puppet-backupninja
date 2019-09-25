@@ -14,7 +14,7 @@ class backupninja::config () {
     ensure  => $backupninja::dir_ensure,
     owner   => 'root',
     group   => 'root',
-    mode    => '0660',
+    mode    => '0770',
     recurse => true,
     purge   => true,
   }
@@ -23,7 +23,7 @@ class backupninja::config () {
     ensure  => $backupninja::dir_ensure,
     owner   => 'root',
     group   => 'root',
-    mode    => '0644',
+    mode    => '0755',
   }
 
   $defaults = {
