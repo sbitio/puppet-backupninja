@@ -8,7 +8,7 @@ define backupninja::entry::sh (
   require backupninja::params
 
   file { "${backupninja::params::config_dir}/${weight}_${name}.sh" :
-    ensure  => $backupninja::ensure,
+    ensure  => $ensure,
     owner   => 'root',
     group   => 'root',
     mode    => '0600',
