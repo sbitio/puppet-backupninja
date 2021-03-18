@@ -22,6 +22,23 @@ define backupninja::entry::mysql (
   require backupninja::params
   require backupninja::entry::params
 
+  if empty($databases) {
+    $db_list = ['all']
+  }
+  elsif is_string($databases) {
+    $db_list = split($databases, ' ')
+  }
+  else {
+    $db_list = $databases
+  }
+
+  if $db_list.size > 1 and 'all' in $db_list {
+    $db_list_real = ['all']
+  }
+  else {
+    $db_list_real = $db_list.unique
+  }
+
   # Allow for stringified arrays.
   # Arrays may come stringified from hiera, if using lookup functions.
   # See https://docs.puppetlabs.com/hiera/1/variables.html#using-lookup-functions
@@ -33,8 +50,6 @@ define backupninja::entry::mysql (
   }
   validate_array($nodata_any_real)
 
-  # TODO: do some validations
-  $db_array = split($databases, ' ')
 
   file { "${backupninja::params::config_dir}/${weight}_${name}.${handler}" :
     ensure  => $backupninja::ensure,

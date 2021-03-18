@@ -17,7 +17,7 @@ backupdir = <%= @backupdir %>
 # space separated list of database names.
 # Note: when using 'all', pg_dumpall is used instead of pg_dump, which means
 # that cluster-wide data (such as users and groups) are saved.
-databases =  <%= @databases %>
+databases = <%= @db_list_real.join(' ') %>
 
 # compress = < yes | no > (default = yes)
 # if yes, compress the pg_dump/pg_dumpall output.
