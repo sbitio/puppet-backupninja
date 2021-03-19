@@ -12,8 +12,22 @@ define backupninja::entry::pgsql (
   require backupninja::params
   require backupninja::entry::params
 
-  # TODO: do some validations
-  $db_array = split($databases, ' ')
+  if empty($databases) {
+    $db_list = ['all']
+  }
+  elsif is_string($databases) {
+    $db_list = split($databases, ' ')
+  }
+  else {
+    $db_list = $databases
+  }
+
+  if $db_list.size > 1 and 'all' in $db_list {
+    $db_list_real = ['all']
+  }
+  else {
+    $db_list_real = $db_list.unique
+  }
 
   $formats = [ 'plain', 'tar', 'custom' ]
   if ! ($format in $formats) {

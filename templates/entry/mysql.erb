@@ -40,7 +40,7 @@ backupdir = <%= @backupdir %>
 # databases = <all | db1 db2 db3 > (default = all)
 # which databases to backup. should either be the word 'all' or a
 # space separated list of database names.
-databases =  <%= @databases %>
+databases = <%= @db_list_real.join(' ') %>
 
 <% if @user != '' -%>
 user = <%= @user %>
