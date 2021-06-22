@@ -35,7 +35,7 @@ define backupninja::entry::pgsql (
   }
 
   file { "${backupninja::params::config_dir}/${weight}_${name}.${handler}" :
-    ensure  => $backupninja::ensure,
+    ensure  => $ensure,
     owner   => 'root',
     group   => 'root',
     mode    => '0600',

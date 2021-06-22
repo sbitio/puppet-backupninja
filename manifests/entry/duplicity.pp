@@ -52,7 +52,7 @@ define backupninja::entry::duplicity (
   }
 
   file { "${backupninja::params::config_dir}/${weight}_${name}.dup" :
-    ensure  => $backupninja::ensure,
+    ensure  => $ensure,
     owner   => 'root',
     group   => 'root',
     mode    => '0600',
