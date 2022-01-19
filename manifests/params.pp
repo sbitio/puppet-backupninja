@@ -9,7 +9,7 @@ class backupninja::params (
   $reportuser      = 'ninja',
   $reportdirectory = '/var/lib/backupninja/reports',
   $usecolors       = true,
-  $when            = 'everyday at 01:00',
+  Variant[Array[String], String] $when  = 'everyday at 01:00',
   $vservers        = false,
   $backupdir       = '/var/backups',
   $package_install_options = undef,
@@ -37,4 +37,3 @@ class backupninja::params (
     }
   }
 }
-

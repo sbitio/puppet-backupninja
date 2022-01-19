@@ -1,7 +1,7 @@
 define backupninja::entry::ldap (
   $ensure    = $backupninja::ensure,
   $weight    = 20,
-  $when      = '',
+  Variant[Array[String], String] $when = '',
   $backupdir = '/var/backups/ldap',
   $suffixes  = 'all',
   $compress  = 'yes',
@@ -12,6 +12,12 @@ define backupninja::entry::ldap (
 
   require backupninja::params
   require backupninja::entry::params
+
+  if $when =~ Array[String] {
+    $_when_real = $when
+  } else {
+    $_when_real = [] << $when
+  }
 
   file { "${backupninja::params::config_dir}/${weight}_${name}.${handler}" :
     ensure  => $ensure,

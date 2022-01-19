@@ -3,7 +3,7 @@ define backupninja::entry (
   $options,
   $ensure = $backupninja::ensure,
   $weight = '',
-  $when   = '',
+  Variant[Array[String], String] $when   = '',
 ) {
 
   include backupninja::entry::params

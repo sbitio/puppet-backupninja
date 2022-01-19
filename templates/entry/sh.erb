@@ -1,6 +1,8 @@
 # MANAGED BY PUPPET!
 
-<% if @when != '' %>when = <%= @when %><% end -%>
+<%- @_when_real.each do |time| -%>
+when = <%= time %>
+<%- end -%>
 
 <% @commands.each do |command| -%>
 <%= command %>
