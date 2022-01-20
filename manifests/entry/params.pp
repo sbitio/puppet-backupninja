@@ -2,6 +2,12 @@ class backupninja::entry::params () {
 
   require backupninja::params
 
+  if $when =~ Array[String] {
+    $_when_real = $when
+  } else {
+    $_when_real = [] << $when
+  }
+
   case $::osfamily {
     'Debian': {
       $duplicity_package_name = 'duplicity'
@@ -21,4 +27,3 @@ class backupninja::entry::params () {
     }
   }
 }
-

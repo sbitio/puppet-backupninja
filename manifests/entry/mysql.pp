@@ -1,7 +1,7 @@
 define backupninja::entry::mysql (
   $ensure         = $backupninja::ensure,
   $weight         = 20,
-  $when           = '',
+  Variant[Array[String], String] $when = '',
   $hotcopy        = false,
   $sqldump        = true,
   $sqldumpoptions = '--lock-tables --complete-insert --add-drop-table --quick --quote-names',
@@ -21,6 +21,12 @@ define backupninja::entry::mysql (
 
   require backupninja::params
   require backupninja::entry::params
+
+  if $when =~ Array[String] {
+    $_when_real = $when
+  } else {
+    $_when_real = [] << $when
+  }
 
   if empty($databases) {
     $db_list = ['all']

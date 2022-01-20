@@ -1,7 +1,7 @@
 define backupninja::entry::duplicity (
   $ensure             = $backupninja::ensure,
   $weight             = 90,
-  $when               = '',
+  Variant[Array[String], String] $when = '',
   $options            = '',
   $nicelevel          = 19,
   $testconnect        = false,
@@ -44,6 +44,12 @@ define backupninja::entry::duplicity (
 ) {
 
   require backupninja::entry::params
+
+  if $when =~ Array[String] {
+    $_when_real = $when
+  } else {
+    $_when_real = [] << $when
+  }
 
   if ! defined(Package[$backupninja::entry::params::duplicity_package_name]) {
     package { $backupninja::entry::params::duplicity_package_name:
