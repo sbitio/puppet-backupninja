@@ -56,8 +56,8 @@ configfile = <%= @configfile %>
 <% if @nodata != '' -%>
 nodata = <%= @nodata %>
 <% end -%>
-<% if @nodata_any_real -%>
-nodata_any = <%= @nodata_any_real.join(' ') %>
+<% if @nodata_any -%>
+nodata_any = <%= @nodata_any.join(' ') %>
 <% end -%>
 <% if @vsname != '' -%>
 vsname = <%= @vsname %>

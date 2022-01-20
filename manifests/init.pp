@@ -3,13 +3,10 @@
 # This class is responsible for installing and configuring the backupninja service
 #
 class backupninja (
-  $ensure         = present,
-  $autoupgrade    = true,
-  $extra_handlers = [],
+  Enum['present', 'absent'] $ensure = present,
+  Boolean $autoupgrade    = true,
+  Array[String] $extra_handlers = [],
 ) {
-
-  validate_bool($autoupgrade)
-  validate_array($extra_handlers)
 
   case $ensure {
     /(present)/: {

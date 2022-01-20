@@ -3,14 +3,14 @@
 # This defined type handles the postgres backupninja task entries
 #
 define backupninja::entry::pgsql (
-  $ensure    = $backupninja::ensure,
-  $weight    = 20,
+  Enum['present', 'absent'] $ensure = $backupninja::ensure,
+  Integer $weight    = 20,
   Variant[Array[String], String] $when = '',
-  $compress  = false,
-  $backupdir = "${backupninja::params::backupdir}/postgres",
-  $databases = 'all',
-  $format    = 'custom',
-  $handler   = 'pgsql',
+  Boolean $compress = false,
+  Stdlib::Absolutepath $backupdir = "${backupninja::params::backupdir}/postgres",
+  String $databases = 'all',
+  String $format    = 'custom',
+  String $handler   = 'pgsql',
 ) {
 
   require backupninja::params
