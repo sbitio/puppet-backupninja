@@ -50,9 +50,9 @@ define backupninja::entry (
     }
     'ldap': {
       backupninja::entry::ldap { $name:
-        ensure         => $ensure,
-        weight         => $real_weight,
-        when           => $real_when,
+        ensure    => $ensure,
+        weight    => $real_weight,
+        when      => $real_when,
         # Ldap
         backupdir => $options[backupdir],
         suffixes  => $options[suffixes],
@@ -86,9 +86,9 @@ define backupninja::entry (
     }
     'pgsql': {
       backupninja::entry::pgsql { $name:
-        ensure         => $ensure,
-        weight         => $real_weight,
-        when           => $real_when,
+        ensure    => $ensure,
+        weight    => $real_weight,
+        when      => $real_when,
         # pgsql
         compress  => $options[compress],
         backupdir => $options[backupdir],
