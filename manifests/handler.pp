@@ -7,18 +7,18 @@ define backupninja::handler (
   require backupninja::params
 
   file { "${backupninja::params::scriptdirectory}/${name}" :
-    ensure  => $ensure,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    source  => $handler_source,
+    ensure => $ensure,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
+    source => $handler_source,
   }
   file { "${backupninja::params::scriptdirectory}/${name}.helper" :
-    ensure  => $ensure,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    source  => $helper_source,
+    ensure => $ensure,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
+    source => $helper_source,
   }
 
 }
