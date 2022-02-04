@@ -1,3 +1,7 @@
+# backupninja::handler
+#
+# This class is responsible for creating the necessary handler files
+#
 define backupninja::handler (
   $ensure         = $backupninja::ensure,
   $handler_source = '',

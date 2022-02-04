@@ -1,3 +1,9 @@
+# backupninja::entry
+#
+# This defined type is responsible for creating backupninja entries
+# Depending on the type parameter it calls one of the classes in manifests/entry/*.pp
+# and generates the corresponding backupninja task
+#
 define backupninja::entry (
   $type,
   $options,

@@ -1,3 +1,7 @@
+# backupninja::install
+#
+# This class handles the installation of the backupninja package
+#
 class backupninja::install () {
 
   require backupninja::params

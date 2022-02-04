@@ -1,3 +1,7 @@
+# backupninja::config
+#
+# This class handles the configuration files
+#
 class backupninja::config () {
   require backupninja::params
   require backupninja::install

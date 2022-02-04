@@ -1,3 +1,7 @@
+# backupninja::params
+#
+# This class handles the module data
+#
 class backupninja::params (
   $log_level       = 4,
   $reportemail     = 'root',

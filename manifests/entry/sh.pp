@@ -1,3 +1,7 @@
+# backupninja::entry::sh
+#
+# This defined type handles the bash backupninja task entries
+#
 define backupninja::entry::sh (
   $ensure         = $backupninja::ensure,
   $weight         = 95,

@@ -1,3 +1,7 @@
+# backupninja::entry::params
+#
+# This class handles the module data for the entry defined types
+#
 class backupninja::entry::params () {
 
   require backupninja::params
