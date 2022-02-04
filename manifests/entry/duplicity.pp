@@ -1,3 +1,7 @@
+# backupninja::entry::duplicity
+#
+# This defined type handles the duplicity backupninja task entries
+#
 define backupninja::entry::duplicity (
   $ensure             = $backupninja::ensure,
   $weight             = 90,

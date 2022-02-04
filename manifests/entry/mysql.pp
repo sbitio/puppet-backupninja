@@ -1,3 +1,7 @@
+# backupninja::entry::mysql
+#
+# This defined type handles the mysql backupninja task entries
+#
 define backupninja::entry::mysql (
   $ensure         = $backupninja::ensure,
   $weight         = 20,

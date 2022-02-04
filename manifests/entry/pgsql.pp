@@ -1,3 +1,7 @@
+# backupninja::entry::pgsql
+#
+# This defined type handles the postgres backupninja task entries
+#
 define backupninja::entry::pgsql (
   $ensure    = $backupninja::ensure,
   $weight    = 20,

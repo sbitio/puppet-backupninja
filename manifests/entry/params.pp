@@ -1,11 +1,15 @@
+# backupninja::entry::params
+#
+# This class handles the module data for the entry defined types
+#
 class backupninja::entry::params () {
 
   require backupninja::params
 
-  if $when =~ Array[String] {
-    $_when_real = $when
+  if $backupninja::params::when =~ Array[String] {
+    $_when_real = $backupninja::params::when
   } else {
-    $_when_real = [] << $when
+    $_when_real = [] << $backupninja::params::when
   }
 
   case $::osfamily {

@@ -1,3 +1,7 @@
+# backupninja
+#
+# This class is responsible for installing and configuring the backupninja service
+#
 class backupninja (
   $ensure         = present,
   $autoupgrade    = true,
@@ -32,12 +36,5 @@ class backupninja (
 
   if $extra_handlers != [] {
     backupninja::load_extra_handler { $extra_handlers :}
-  }
-}
-
-define backupninja::load_extra_handler () {
-  backupninja::handler { $name :
-    handler_source => "puppet:///modules/backupninja/handlers/${name}.in",
-    helper_source  => "puppet:///modules/backupninja/handlers/${name}.helper.in",
   }
 }

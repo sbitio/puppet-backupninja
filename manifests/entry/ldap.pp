@@ -1,3 +1,7 @@
+# backupninja::entry::ldap
+#
+# This defined type handles the ldap backupninja task entries
+#
 define backupninja::entry::ldap (
   $ensure    = $backupninja::ensure,
   $weight    = 20,

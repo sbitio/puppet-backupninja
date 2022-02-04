@@ -1,3 +1,9 @@
+# backupninja::entry
+#
+# This defined type is responsible for creating backupninja entries
+# Depending on the type parameter it calls one of the classes in manifests/entry/*.pp
+# and generates the corresponding backupninja task
+#
 define backupninja::entry (
   $type,
   $options,
@@ -8,18 +14,22 @@ define backupninja::entry (
 
   include backupninja::entry::params
 
+  $real_weight = $weight ? {
+    ''      => undef,
+    default => $weight
+  }
+
+  $real_when = $when ? {
+    ''      => undef,
+    default => $when
+  }
+
   case $type {
     'duplicity': {
       backupninja::entry::duplicity { $name:
         ensure             => $ensure,
-        weight             => $weight ? {
-          ''      => undef,
-          default => $weight,
-        },
-        when               => $when ? {
-          ''      => undef,
-          default => $when,
-        },
+        weight             => $real_weight,
+        when               => $real_when,
         # Duplicity
         options            => $options[options],
         nicelevel          => $options[nicelevel],
@@ -46,15 +56,9 @@ define backupninja::entry (
     }
     'ldap': {
       backupninja::entry::ldap { $name:
-        ensure         => $ensure,
-        weight         => $weight ? {
-          ''      => undef,
-          default => $weight,
-        },
-        when           => $when ? {
-          ''      => undef,
-          default => $when,
-        },
+        ensure    => $ensure,
+        weight    => $real_weight,
+        when      => $real_when,
         # Ldap
         backupdir => $options[backupdir],
         suffixes  => $options[suffixes],
@@ -66,14 +70,8 @@ define backupninja::entry (
     'mysql': {
       backupninja::entry::mysql { $name:
         ensure         => $ensure,
-        weight         => $weight ? {
-          ''      => undef,
-          default => $weight,
-        },
-        when           => $when ? {
-          ''      => undef,
-          default => $when,
-        },
+        weight         => $real_weight,
+        when           => $real_when,
         # MySQL
         hotcopy        => $options[hotcopy],
         sqldump        => $options[sqldump],
@@ -94,15 +92,9 @@ define backupninja::entry (
     }
     'pgsql': {
       backupninja::entry::pgsql { $name:
-        ensure         => $ensure,
-        weight         => $weight ? {
-          ''      => undef,
-          default => $weight,
-        },
-        when           => $when ? {
-          ''      => undef,
-          default => $when,
-        },
+        ensure    => $ensure,
+        weight    => $real_weight,
+        when      => $real_when,
         # pgsql
         compress  => $options[compress],
         backupdir => $options[backupdir],
@@ -114,20 +106,14 @@ define backupninja::entry (
     'sh': {
       backupninja::entry::sh { $name:
         ensure   => $ensure,
-        weight   => $weight ? {
-          ''      => undef,
-          default => $weight,
-        },
-        when     => $when ? {
-          ''      => undef,
-          default => $when,
-        },
+        weight   => $real_weight,
+        when     => $real_when,
         #sh
         commands => $options[commands],
       }
     }
     default: {
-      fail "Uknown type $type for backupninja::entry"
+      fail "Uknown type ${type} for backupninja::entry"
     }
   }
 
