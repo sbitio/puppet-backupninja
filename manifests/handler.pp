@@ -3,9 +3,9 @@
 # This class is responsible for creating the necessary handler files
 #
 define backupninja::handler (
-  $ensure         = $backupninja::ensure,
-  $handler_source = '',
-  $helper_source  = '',
+  Enum['present', 'absent'] $ensure = $backupninja::ensure,
+  String $handler_source = '',
+  String $helper_source  = '',
 ) {
 
   require backupninja::params

@@ -5,17 +5,17 @@
 # and generates the corresponding backupninja task
 #
 define backupninja::entry (
-  $type,
-  $options,
-  $ensure = $backupninja::ensure,
-  $weight = '',
+  Enum['duplicity', 'ldap', 'mysql', 'pgsql', 'sh'] $type,
+  Hash $options,
+  Enum['present', 'absent'] $ensure = $backupninja::ensure,
+  Integer $weight = -1,
   Variant[Array[String], String] $when   = '',
 ) {
 
   include backupninja::entry::params
 
   $real_weight = $weight ? {
-    ''      => undef,
+    -1      => undef,
     default => $weight
   }
 

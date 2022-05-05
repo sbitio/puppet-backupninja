@@ -3,24 +3,24 @@
 # This defined type handles the mysql backupninja task entries
 #
 define backupninja::entry::mysql (
-  $ensure         = $backupninja::ensure,
-  $weight         = 20,
+  Enum['present', 'absent'] $ensure = $backupninja::ensure,
+  Integer $weight            = 20,
   Variant[Array[String], String] $when = '',
-  $hotcopy        = false,
-  $sqldump        = true,
-  $sqldumpoptions = '--lock-tables --complete-insert --add-drop-table --quick --quote-names',
-  $compress       = false,
-  $dbhost         = '',
-  $backupdir      = "${backupninja::params::backupdir}/mysql",
-  $databases      = 'all',
-  $user           = '',
-  $dbusername     = '',
-  $dbpassword     = '',
-  $configfile     = $backupninja::params::mysql_configfile,
-  $nodata         = '',
-  $nodata_any     = [],
-  $vsname         = '',
-  $handler        = 'mysql',
+  Boolean $hotcopy          = false,
+  Boolean $sqldump          = true,
+  String $sqldumpoptions    = '--lock-tables --complete-insert --add-drop-table --quick --quote-names',
+  Boolean $compress         = false,
+  String $dbhost            = '',
+  Stdlib::Absolutepath $backupdir = "${backupninja::params::backupdir}/mysql",
+  String $databases         = 'all',
+  String $user              = '',
+  String $dbusername        = '',
+  String $dbpassword        = '',
+  Stdlib::Absolutepath $configfile = $backupninja::params::mysql_configfile,
+  String $nodata            = '',
+  Array[String] $nodata_any = [],
+  String $vsname            = '',
+  String $handler           = 'mysql',
 ) {
 
   require backupninja::params
@@ -48,17 +48,6 @@ define backupninja::entry::mysql (
   else {
     $db_list_real = $db_list.unique
   }
-
-  # Allow for stringified arrays.
-  # Arrays may come stringified from hiera, if using lookup functions.
-  # See https://docs.puppetlabs.com/hiera/1/variables.html#using-lookup-functions
-  if is_string($nodata_any) {
-    $nodata_any_real = parseyaml($nodata_any)
-  }
-  else {
-    $nodata_any_real = $nodata_any
-  }
-  validate_array($nodata_any_real)
 
 
   file { "${backupninja::params::config_dir}/${weight}_${name}.${handler}" :
