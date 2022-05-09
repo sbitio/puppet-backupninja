@@ -12,7 +12,7 @@ define backupninja::entry::mysql (
   Boolean $compress         = false,
   String $dbhost            = '',
   Stdlib::Absolutepath $backupdir = "${backupninja::params::backupdir}/mysql",
-  String $databases         = 'all',
+  Variant[Array[String], String] $databases         = 'all',
   String $user              = '',
   String $dbusername        = '',
   String $dbpassword        = '',
