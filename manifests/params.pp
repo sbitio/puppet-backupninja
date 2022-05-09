@@ -16,7 +16,7 @@ class backupninja::params (
   Variant[Array[String], String] $when = 'everyday at 01:00',
   Boolean $vservers        = false,
   Stdlib::Absolutepath $backupdir  = '/var/backups',
-  Optional[String] $package_install_options = undef,
+  Optional[Variant[Array[String], String]] $package_install_options = undef,
 ) {
 
   $package_name     = 'backupninja'
