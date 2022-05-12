@@ -4,7 +4,7 @@
 #
 define backupninja::entry::sh (
   Enum['present', 'absent'] $ensure = $backupninja::ensure,
-  Integer $weight          = 95,
+  Optional[Integer] $weight          = 95,
   Variant[Array[String], String] $when = '',
   Array[String] $commands = [],
 ) {

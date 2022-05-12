@@ -4,7 +4,7 @@
 #
 define backupninja::entry::duplicity (
   Enum['present', 'absent'] $ensure = $backupninja::ensure,
-  Integer $weight      = 90,
+  Optional[Integer] $weight      = 90,
   Variant[Array[String], String] $when = '',
   String $options     = '',
   Integer $nicelevel  = 19,

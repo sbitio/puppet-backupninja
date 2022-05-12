@@ -4,7 +4,7 @@
 #
 define backupninja::entry::ldap (
   Enum['present', 'absent'] $ensure = $backupninja::ensure,
-  Integer $weight    = 20,
+  Optional[Integer] $weight    = 20,
   Variant[Array[String], String] $when = '',
   Stdlib::Absolutepath $backupdir = '/var/backups/ldap',
   String $suffixes  = 'all',

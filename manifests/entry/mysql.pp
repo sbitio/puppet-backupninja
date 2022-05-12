@@ -4,7 +4,7 @@
 #
 define backupninja::entry::mysql (
   Enum['present', 'absent'] $ensure = $backupninja::ensure,
-  Integer $weight            = 20,
+  Optional[Integer] $weight            = 20,
   Variant[Array[String], String] $when = '',
   Boolean $hotcopy          = false,
   Boolean $sqldump          = true,

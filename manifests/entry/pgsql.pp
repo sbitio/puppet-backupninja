@@ -4,7 +4,7 @@
 #
 define backupninja::entry::pgsql (
   Enum['present', 'absent'] $ensure = $backupninja::ensure,
-  Integer $weight    = 20,
+  Optional[Integer] $weight    = 20,
   Variant[Array[String], String] $when = '',
   Boolean $compress = false,
   Stdlib::Absolutepath $backupdir = "${backupninja::params::backupdir}/postgres",
