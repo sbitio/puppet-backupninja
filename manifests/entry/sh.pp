@@ -3,10 +3,10 @@
 # This defined type handles the bash backupninja task entries
 #
 define backupninja::entry::sh (
-  Enum['present', 'absent'] $ensure = $backupninja::ensure,
-  Optional[Integer] $weight          = 95,
+  Enum['present', 'absent'] $ensure    = $backupninja::ensure,
+  Optional[Integer] $weight            = 95,
   Variant[Array[String], String] $when = '',
-  Array[String] $commands = [],
+  Array[String] $commands              = [],
 ) {
 
   require backupninja::params

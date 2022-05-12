@@ -3,15 +3,15 @@
 # This defined type handles the ldap backupninja task entries
 #
 define backupninja::entry::ldap (
-  Enum['present', 'absent'] $ensure = $backupninja::ensure,
-  Optional[Integer] $weight    = 20,
+  Enum['present', 'absent'] $ensure    = $backupninja::ensure,
+  Optional[Integer] $weight            = 20,
   Variant[Array[String], String] $when = '',
-  Stdlib::Absolutepath $backupdir = '/var/backups/ldap',
-  String $suffixes  = 'all',
-  String $compress  = 'yes',
-  String $ldif      = 'yes',
-  String $restart   = 'no',
-  String $handler   = 'ldap',
+  Stdlib::Absolutepath $backupdir      = '/var/backups/ldap',
+  String $suffixes                     = 'all',
+  String $compress                     = 'yes',
+  String $ldif                         = 'yes',
+  String $restart                      = 'no',
+  String $handler                      = 'ldap',
 ) {
 
   require backupninja::params

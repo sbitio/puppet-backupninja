@@ -7,8 +7,8 @@
 define backupninja::entry (
   Enum['duplicity', 'ldap', 'mysql', 'pgsql', 'sh'] $type,
   Hash $options,
-  Enum['present', 'absent'] $ensure = $backupninja::ensure,
-  Optional[Integer] $weight = undef,
+  Enum['present', 'absent'] $ensure      = $backupninja::ensure,
+  Optional[Integer] $weight              = undef,
   Variant[Array[String], String] $when   = '',
 ) {
 

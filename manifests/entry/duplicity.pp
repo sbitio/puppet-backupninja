@@ -3,17 +3,17 @@
 # This defined type handles the duplicity backupninja task entries
 #
 define backupninja::entry::duplicity (
-  Enum['present', 'absent'] $ensure = $backupninja::ensure,
-  Optional[Integer] $weight      = 90,
+  Enum['present', 'absent'] $ensure    = $backupninja::ensure,
+  Optional[Integer] $weight            = 90,
   Variant[Array[String], String] $when = '',
-  String $options     = '',
-  Integer $nicelevel  = 19,
-  Boolean $testconnect = false,
-  Boolean $sign       = false,
-  String $encryptkey  = '',
-  String $signkey     = '',
-  String $password    = '',
-  Array[String] $include = [
+  String $options                      = '',
+  Integer $nicelevel                   = 19,
+  Boolean $testconnect                 = false,
+  Boolean $sign                        = false,
+  String $encryptkey                   = '',
+  String $signkey                      = '',
+  String $password                     = '',
+  Array[String] $include               = [
     '/var/spool/cron/crontabs',
     '/var/backups',
     '/etc',
@@ -23,7 +23,7 @@ define backupninja::entry::duplicity (
     '/var/lib/dpkg/status*',
     '/var/www',
   ],
-  Array[String] $exclude = [
+  Array[String] $exclude               = [
     '/home/*/.gnupg',
     '/home/*/.local/share/Trash',
     '/home/*/.Trash',
@@ -33,18 +33,18 @@ define backupninja::entry::duplicity (
     '/home/*/gtk-gnutella-downloads',
     '/var/cache/backupninja/duplicity',
   ],
-  Boolean $incremental       = true,
-  String $increments         = '30',
-  String $keep               = '60',
-  String $desturl            = '',
-  String $awsaccesskeyid     = '',
-  String $awssecretaccesskey = '',
-  String $ftp_password       = '',
-  String $bandwidthlimit     = '',
-  String $sshoptions         = '',
-  String $destdir            = '',
-  String $desthost           = '',
-  String $destuser           = '',
+  Boolean $incremental                 = true,
+  String $increments                   = '30',
+  String $keep                         = '60',
+  String $desturl                      = '',
+  String $awsaccesskeyid               = '',
+  String $awssecretaccesskey           = '',
+  String $ftp_password                 = '',
+  String $bandwidthlimit               = '',
+  String $sshoptions                   = '',
+  String $destdir                      = '',
+  String $desthost                     = '',
+  String $destuser                     = '',
 ) {
 
   require backupninja::entry::params
