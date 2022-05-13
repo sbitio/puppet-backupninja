@@ -4,8 +4,8 @@
 #
 class backupninja (
   Enum['present', 'absent'] $ensure = present,
-  Boolean $autoupgrade    = true,
-  Array[String] $extra_handlers = [],
+  Boolean $autoupgrade              = true,
+  Array[String] $extra_handlers     = [],
 ) {
 
   case $ensure {

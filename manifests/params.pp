@@ -3,19 +3,19 @@
 # This class handles the module data
 #
 class backupninja::params (
-  Integer $log_level       = 4,
-  String $reportemail      = 'root',
-  Boolean $reportsuccess   = false,
-  Boolean $reportinfo      = false,
-  Boolean $reportwarning   = true,
-  Boolean $reportspace     = false,
-  String $reporthost       = '',
-  String $reportuser       = 'ninja',
-  Stdlib::Absolutepath $reportdirectory = '/var/lib/backupninja/reports',
-  Boolean $usecolors       = true,
-  Variant[Array[String], String] $when = 'everyday at 01:00',
-  Boolean $vservers        = false,
-  Stdlib::Absolutepath $backupdir  = '/var/backups',
+  Integer $log_level                                                = 4,
+  String $reportemail                                               = 'root',
+  Boolean $reportsuccess                                            = false,
+  Boolean $reportinfo                                               = false,
+  Boolean $reportwarning                                            = true,
+  Boolean $reportspace                                              = false,
+  String $reporthost                                                = '',
+  String $reportuser                                                = 'ninja',
+  Stdlib::Absolutepath $reportdirectory                             = '/var/lib/backupninja/reports',
+  Boolean $usecolors                                                = true,
+  Variant[Array[String], String] $when                              = 'everyday at 01:00',
+  Boolean $vservers                                                 = false,
+  Stdlib::Absolutepath $backupdir                                   = '/var/backups',
   Optional[Variant[Array[String], String]] $package_install_options = undef,
 ) {
 

@@ -7,17 +7,12 @@
 define backupninja::entry (
   Enum['duplicity', 'ldap', 'mysql', 'pgsql', 'sh'] $type,
   Hash $options,
-  Enum['present', 'absent'] $ensure = $backupninja::ensure,
-  Integer $weight = -1,
+  Enum['present', 'absent'] $ensure      = $backupninja::ensure,
+  Optional[Integer] $weight              = undef,
   Variant[Array[String], String] $when   = '',
 ) {
 
   include backupninja::entry::params
-
-  $real_weight = $weight ? {
-    -1      => undef,
-    default => $weight
-  }
 
   $real_when = $when ? {
     ''      => undef,
@@ -28,7 +23,7 @@ define backupninja::entry (
     'duplicity': {
       backupninja::entry::duplicity { $name:
         ensure             => $ensure,
-        weight             => $real_weight,
+        weight             => $weight,
         when               => $real_when,
         # Duplicity
         options            => $options[options],
@@ -57,7 +52,7 @@ define backupninja::entry (
     'ldap': {
       backupninja::entry::ldap { $name:
         ensure    => $ensure,
-        weight    => $real_weight,
+        weight    => $weight,
         when      => $real_when,
         # Ldap
         backupdir => $options[backupdir],
@@ -70,7 +65,7 @@ define backupninja::entry (
     'mysql': {
       backupninja::entry::mysql { $name:
         ensure         => $ensure,
-        weight         => $real_weight,
+        weight         => $weight,
         when           => $real_when,
         # MySQL
         hotcopy        => $options[hotcopy],
@@ -93,7 +88,7 @@ define backupninja::entry (
     'pgsql': {
       backupninja::entry::pgsql { $name:
         ensure    => $ensure,
-        weight    => $real_weight,
+        weight    => $weight,
         when      => $real_when,
         # pgsql
         compress  => $options[compress],
@@ -106,7 +101,7 @@ define backupninja::entry (
     'sh': {
       backupninja::entry::sh { $name:
         ensure   => $ensure,
-        weight   => $real_weight,
+        weight   => $weight,
         when     => $real_when,
         #sh
         commands => $options[commands],

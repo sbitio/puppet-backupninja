@@ -4,8 +4,8 @@
 #
 define backupninja::handler (
   Enum['present', 'absent'] $ensure = $backupninja::ensure,
-  String $handler_source = '',
-  String $helper_source  = '',
+  String $handler_source            = '',
+  String $helper_source             = '',
 ) {
 
   require backupninja::params
