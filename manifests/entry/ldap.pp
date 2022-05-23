@@ -17,12 +17,6 @@ define backupninja::entry::ldap (
   require backupninja::params
   require backupninja::entry::params
 
-  if $when =~ Array[String] {
-    $_when_real = $when
-  } else {
-    $_when_real = [] << $when
-  }
-
   file { "${backupninja::params::config_dir}/${weight}_${name}.${handler}" :
     ensure  => $ensure,
     owner   => 'root',

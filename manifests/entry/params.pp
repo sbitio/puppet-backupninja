@@ -6,11 +6,11 @@ class backupninja::entry::params () {
 
   require backupninja::params
 
-  if $backupninja::params::when =~ Array[String] {
-    $_when_real = $backupninja::params::when
-  } else {
-    $_when_real = [] << $backupninja::params::when
-  }
+#  if $backupninja::params::when =~ Array[String] {
+#    $_when_real = $backupninja::params::when
+#  } else {
+#    $_when_real = [] << $backupninja::params::when
+#  }
 
   case $::osfamily {
     'Debian': {

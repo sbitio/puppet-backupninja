@@ -49,12 +49,6 @@ define backupninja::entry::duplicity (
 
   require backupninja::entry::params
 
-  if $when =~ Array[String] {
-    $_when_real = $when
-  } else {
-    $_when_real = [] << $when
-  }
-
   if ! defined(Package[$backupninja::entry::params::duplicity_package_name]) {
     package { $backupninja::entry::params::duplicity_package_name:
       ensure => $backupninja::ensure,
