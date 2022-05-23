@@ -11,12 +11,6 @@ define backupninja::entry::sh (
 
   require backupninja::params
 
-  if $when =~ Array[String] {
-    $_when_real = $when
-  } else {
-    $_when_real = [] << $when
-  }
-
   file { "${backupninja::params::config_dir}/${weight}_${name}.sh" :
     ensure  => $ensure,
     owner   => 'root',

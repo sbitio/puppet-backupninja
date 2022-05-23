@@ -16,12 +16,6 @@ define backupninja::entry::pgsql (
   require backupninja::params
   require backupninja::entry::params
 
-  if $when =~ Array[String] {
-    $_when_real = $when
-  } else {
-    $_when_real = [] << $when
-  }
-
   if $databases.size > 1 and 'all' in $databases {
     $db_list_real = ['all']
   }

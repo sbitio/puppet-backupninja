@@ -19,10 +19,16 @@ define backupninja::entry (
     default => $when
   }
 
+  if $real_when =~ Array[String] {
+    $_when_real = $real_when
+  } else {
+    $_when_real = [] << $real_when
+  }
+
   $defaults = {
     'ensure' => $ensure,
     'weight' => $weight,
-    'when'   => $real_when,
+    'when'   => $_when_real,
   }
 
   $params = merge($defaults, $options)
