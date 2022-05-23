@@ -8,7 +8,7 @@ define backupninja::entry::pgsql (
   Variant[Array[String], String] $when = '',
   Boolean $compress                    = false,
   Stdlib::Absolutepath $backupdir      = "${backupninja::params::backupdir}/postgres",
-  String $databases                    = 'all',
+  Array[String] $databases             = ['all'],
   String $format                       = 'custom',
   String $handler                      = 'pgsql',
 ) {
@@ -22,21 +22,11 @@ define backupninja::entry::pgsql (
     $_when_real = [] << $when
   }
 
-  if empty($databases) {
-    $db_list = ['all']
-  }
-  elsif is_string($databases) {
-    $db_list = split($databases, ' ')
-  }
-  else {
-    $db_list = $databases
-  }
-
-  if $db_list.size > 1 and 'all' in $db_list {
+  if $databases.size > 1 and 'all' in $databases {
     $db_list_real = ['all']
   }
   else {
-    $db_list_real = $db_list.unique
+    $db_list_real = $databases.unique
   }
 
   $formats = [ 'plain', 'tar', 'custom' ]
