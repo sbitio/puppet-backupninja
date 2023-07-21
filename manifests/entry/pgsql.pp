@@ -25,7 +25,7 @@ define backupninja::entry::pgsql (
   if empty($databases) {
     $db_list = ['all']
   }
-  elsif is_string($databases) {
+  elsif $databases =~String {
     $db_list = split($databases, ' ')
   }
   else {
